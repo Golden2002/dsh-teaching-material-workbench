@@ -39,11 +39,11 @@
 - 文件 `data/plugins/Golden2002__dsh-teaching-material-workbench.yml`（commit `e5cf334`）；
 - 条目内容见 `community/catalog/`。
 
-未完成：创建 PR。本机 token 是 fine-grained token，对上游仓库返回 `Resource not accessible by personal access token`。需要手动一键：
+未完成：创建 PR。本机 token 是 fine-grained token，对上游仓库返回 `Resource not accessible by personal access token`。用户已手动提交：
 
-<https://github.com/awesome-dsh-plugin/awesome-dsh-plugin/compare/main...Golden2002:add-dsh-teaching-material-workbench?expand=1>
+PR #12902：<https://github.com/awesome-dsh-plugin/awesome-dsh-plugin/pull/12902>
 
-正文用 [`community/catalog/PR.md`](../community/catalog/PR.md)。仓库创建于 2026-11-07T08:24:25Z，距 1 天门槛约 23.9 小时；按官方说明 CI 会自行重跑，不需要重复提交。
+仓库创建于 2026-11-07T08:24:25Z，距 1 天门槛约 23.9 小时；PR 已进入 CI，age 门槛会先失败并自动重跑，不需要重复提交。
 
 ## 4. npm（未做，非必需）
 

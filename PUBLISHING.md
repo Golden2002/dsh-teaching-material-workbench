@@ -31,11 +31,13 @@ plugin_manager action=install_bundle target=git+https://github.com/Golden2002/ds
 - fork `awesome-dsh-plugin/awesome-dsh-plugin`；
 - 在 fork 的分支 `add-dsh-teaching-material-workbench` 提交条目文件 `data/plugins/Golden2002__dsh-teaching-material-workbench.yml`（提交 `e5cf334`）。
 
-未完成：打开 PR。本机 token 是 fine-grained token，对上游仓库没有创建 PR 的权限，API 返回 `Resource not accessible by personal access token`。需要手动点一次：
+未完成：打开 PR。本机 token 是 fine-grained token，对上游仓库没有创建 PR 的权限，API 返回 `Resource not accessible by personal access token`。用户已手动提交 PR：
 
-<https://github.com/awesome-dsh-plugin/awesome-dsh-plugin/compare/main...Golden2002:add-dsh-teaching-material-workbench?expand=1>
+<https://github.com/awesome-dsh-plugin/awesome-dsh-plugin/pull/12902>
 
-页面里的标题与正文可直接用 [`catalog/PR.md`](catalog/PR.md)。仓库创建未满 24 小时，CI 的 age 门槛会先失败；按官方说明会自动重跑并在约 24 小时内转绿，不需要重复提交。
+（compare 链接：<https://github.com/awesome-dsh-plugin/awesome-dsh-plugin/compare/main...Golden2002:add-dsh-teaching-material-workbench?expand=1>；正文见 [`catalog/PR.md`](catalog/PR.md)。）
+
+CI 会在仓库满 24 小时前因 age 门槛失败，随后自动重跑；不需要重复提交。
 
 ## 3. npm（未完成）
 
