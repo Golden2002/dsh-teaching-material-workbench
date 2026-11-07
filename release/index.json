@@ -1,0 +1,51 @@
+{
+  "format": 1,
+  "title": {
+    "en": "Teaching material workbench",
+    "zh": "教学物料制作工作台"
+  },
+  "description": {
+    "en": "Community plugin index for dsh-teaching-material-workbench.",
+    "zh": "dsh-teaching-material-workbench 的社区插件索引条目。"
+  },
+  "metadata": {
+    "categories": {},
+    "labels": {},
+    "sortKeys": {}
+  },
+  "plugins": [
+    {
+      "name": "dsh-teaching-material-workbench",
+      "title": {
+        "en": "Teaching material workbench",
+        "zh": "教学物料制作工作台"
+      },
+      "description": {
+        "en": "Evidence-gated teaching-material production: scaffold a case, bind primary sources, run layered gates, audit rights and hash artifacts.",
+        "zh": "按证据链生产教学物料：建立案例、绑定一手材料、运行三层门禁、审计版权并记录产物哈希。"
+      },
+      "author": "dsh-teaching-material-workbench contributors",
+      "metadata": {
+        "keywords": [
+          "teaching",
+          "instructional-design",
+          "evidence",
+          "quality-assurance",
+          "accessibility"
+        ]
+      },
+      "versions": [
+        {
+          "version": "0.2.4",
+          "publishTimestamp": 1794039297,
+          "source": {
+            "type": "npm"
+          },
+          "engines": {
+            "dsh": ">=0.2.2-rc.1"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-label="Teaching material workbench">
+  <rect width="128" height="128" rx="26" fill="#12314f"/>
+  <path d="M32 38c10-6 20-6 30 0v50c-10-6-20-6-30 0z" fill="#f4f7fa"/>
+  <path d="M96 38c-10-6-20-6-30 0v50c10-6 20-6 30 0z" fill="#d8e4ee"/>
+  <path d="M64 38v50" stroke="#12314f" stroke-width="3"/>
+  <path d="M48 56l10 10 22-24" fill="none" stroke="#1f9d7a" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -1,0 +1,6 @@
+# dsh-teaching-material-workbench bundle patch.
+# The bundle inserts one Host row; installation goes through plugin_manager
+# (install_bundle) or `dsh plugin add`, never by editing the profile patch.
+- insert:
+    - id: teaching-material-workbench
+      name: 'dsh-teaching-material-workbench'
