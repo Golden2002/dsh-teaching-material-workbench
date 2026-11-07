@@ -39,7 +39,9 @@
           "version": "0.2.4",
           "publishTimestamp": 1794039297,
           "source": {
-            "type": "npm"
+            "type": "git",
+            "url": "https://github.com/Golden2002/dsh-teaching-material-workbench.git",
+            "commit": "7b805288da07a1985157948f35feb940179bb384"
           },
           "engines": {
             "dsh": ">=0.2.2-rc.1"

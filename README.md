@@ -30,6 +30,14 @@ plugin_manager action=install_bundle target=<absolute package directory>
 
 CLI equivalent: `dsh plugin --profile <name> add <absolute package directory>`.
 
+From the public repository (commit-pinned):
+
+```text
+plugin_manager action=install_bundle target=git+https://github.com/Golden2002/dsh-teaching-material-workbench.git#7b805288da07a1985157948f35feb940179bb384
+```
+
+Repository: <https://github.com/Golden2002/dsh-teaching-material-workbench>. Release tarball and checksum are under `release/`.
+
 Requirements: DeepSeek Harness with Host `tools` service (current profiles), Node.js ≥ 20. The package declares `engines.dsh >=0.2.2-rc.1`, has no install scripts, no build step, no runtime dependencies, and makes no network requests.
 
 ## Quick start
