@@ -1,6 +1,6 @@
 # Publishing
 
-当前版本：**0.4.0**（公开仓库已更新；社区目录 PR #12902 等待 age 门槛自动重跑）。
+当前版本：**0.4.1**（公开仓库已更新；社区目录 PR #12902 等待 age 门槛自动重跑）。
 
 ## 1. 公开仓库
 
@@ -8,16 +8,16 @@
 |---|---|
 | 仓库 | <https://github.com/Golden2002/dsh-teaching-material-workbench>（public） |
 | 默认分支 | `main` |
-| 发布 tag | `v0.4.0` |
-| tarball | `release/dsh-teaching-material-workbench-0.4.0.tgz`，149,700 B |
-| SHA-256 | `2FDE591F074A39A4AC60DAE72A2E221EF3D579D300A71E9A887EEFE5C809A339` |
-| 安装 | `plugin_manager install_bundle` 返回 `application=applied`，版本 0.4.0，10 个工具 |
+| 发布 tag | `v0.4.1` |
+| tarball | `release/dsh-teaching-material-workbench-0.4.1.tgz`，175,053 B |
+| SHA-256 | `D9C58C2B948E32C96620E98D347DAF557B44A83929FE819563E2B9BA6DA9C082` |
+| 安装 | `plugin_manager install_bundle` 返回 `application=applied`，版本 0.4.1，10 个工具 |
 | 测试 | 38 项通过、0 失败、0 跳过 |
 
 从公开仓库安装（tag 固定）：
 
 ```powershell
-plugin_manager action=install_bundle target=git+https://github.com/Golden2002/dsh-teaching-material-workbench.git#v0.4.0
+plugin_manager action=install_bundle target=git+https://github.com/Golden2002/dsh-teaching-material-workbench.git#v0.4.1
 ```
 
 ## 2. 社区目录

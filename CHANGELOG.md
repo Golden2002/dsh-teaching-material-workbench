@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.1 — 2026-11-08
+
+- Export now writes `build/script.md` (narration script) and `build/subtitles.srt` (one cue per page, timed from page minutes) alongside the storyboard, for the "video/animation scripts only, no rendering" workflow.
+- Commit the two research reports produced for this iteration: `docs/TEACHER-NEEDS.md` (teacher first-person, evidence S01–S16) and `docs/MEDIA-PIPELINE.md` (local toolchain tests, routes, risks).
+
 ## 0.4.0 — 2026-11-08
 
 - Add the page model: `pages.json`, one timeline segment per page, with slide bullets, handout paragraphs, task, notes and sources; saving regenerates `build/outline.md` and creates a history version (`teaching_material_pages`).

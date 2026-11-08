@@ -56,6 +56,8 @@ test('exportPages writes handout, deck, storyboard and Manim scripts', () => {
     assert.ok(existsSync(join(dir, 'build', 'handout.md')))
     assert.ok(existsSync(join(dir, 'build', 'deck.md')))
     assert.ok(existsSync(join(dir, 'build', 'storyboard.md')))
+    assert.ok(existsSync(join(dir, 'build', 'script.md')))
+    assert.match(readFileSync(join(dir, 'build', 'subtitles.srt'), 'utf8'), /00:00:00,000 --> 00:08:00,000/)
     assert.ok(existsSync(join(dir, 'animations', 'Scene01.py')))
     assert.ok(result.artifacts.length >= 4)
     assert.match(readFileSync(join(dir, 'animations', 'Scene01.py'), 'utf8'), /class Scene01\(Scene\)/)
