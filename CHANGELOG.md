@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.2 — 2026-11-08
+
+- Manim scene scripts now declare `FONT = "Noto Sans SC"` with a note to change it when that font is absent; generated text passes `font=FONT`.
+- Correct the Manim degraded reason: ffmpeg may exist through `imageio-ffmpeg`, so the message no longer claims video synthesis is impossible, only that the plugin does not embed it.
+- Include the final `docs/MEDIA-PIPELINE.md` research report from the media-engineer agent.
+
 ## 0.4.1 — 2026-11-08
 
 - Export now writes `build/script.md` (narration script) and `build/subtitles.srt` (one cue per page, timed from page minutes) alongside the storyboard, for the "video/animation scripts only, no rendering" workflow.
