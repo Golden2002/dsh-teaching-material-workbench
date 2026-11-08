@@ -5,18 +5,30 @@ Optional external helper: only runs when python-docx is installed.
 """
 
 import json
+import os
 import sys
+
+
+def safe_asset(base_dir, relative):
+    if not base_dir or not relative:
+        return None
+    relative = str(relative).replace("\\", "/")
+    if ".." in relative.split("/"):
+        return None
+    path = os.path.join(base_dir, relative)
+    return path if os.path.isfile(path) else None
 
 
 def main() -> int:
     import docx
-    from docx.shared import Pt
+    from docx.shared import Inches, Pt
 
     source, target = sys.argv[1], sys.argv[2]
     with open(source, encoding="utf-8") as handle:
         data = json.load(handle)
     lesson = data.get("lesson", {})
     pages = data.get("pages", [])
+    base_dir = data.get("dir")
 
     document = docx.Document()
     document.add_heading(str(lesson.get("title") or "讲义"), 0)
@@ -31,6 +43,14 @@ def main() -> int:
         document.add_heading(str(handout.get("heading") or page.get("title") or f"第 {index} 节"), level=1)
         for paragraph in handout.get("paragraphs") or []:
             document.add_paragraph(str(paragraph))
+        visual = page.get("slide", {}).get("visual") or {}
+        image_path = safe_asset(base_dir, visual.get("asset"))
+        if image_path:
+            document.add_picture(image_path, width=Inches(5.5))
+            caption = visual.get("caption") or visual.get("alt") or ""
+            source_id = visual.get("source") or ""
+            if caption or source_id:
+                document.add_paragraph(f"图注：{caption}{f' [{source_id}]' if source_id else ''}")
         if handout.get("task"):
             document.add_paragraph(f"任务：{handout['task']}")
         sources = page.get("sources") or []

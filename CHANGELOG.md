@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.6.0 — 2026-11-08
+
+- Add a complete case wizard in the Web UI: root directory, title, folder id, subject, level, audience, setting, duration, assessment, initial sources and timeline rows; `POST /api/case` creates the same scaffold as `teaching_material_init`.
+- Add images to slides: pick a `figures.json` entry or an image under `assets/`, set alt text, caption and image source id; the slide preview renders the image through `GET /api/asset`; handout/deck Markdown and DOCX/PPTX export include the image with its caption and source.
+- Add page-field diff: history versions compare per page and per field (title, minutes, layout, slide bullets, handout paragraphs, notes, sources, visual), side by side.
+- Add `tests/wizard.test.js` for the scaffold.
+
 ## 0.5.0 — 2026-11-08
 
 - Add the `来源` tab and structured sources API: edit `sources.csv` as cards (id/title/publisher/date/type/locator/access/license/verified/role), see verified/primary/restricted counts, add/delete rows.

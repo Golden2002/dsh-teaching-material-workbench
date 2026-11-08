@@ -32,7 +32,8 @@ description: Evidence-gated production of teaching materials with a Web UI: cont
 
 安装后刷新页面，对话视图旁的 `教学物料` 标签就是工作台，四个页签：
 
-- **逐页**：按时间轴生成页草稿；左侧选页，中间改标题、时长、版面、课件要点、讲义正文、任务、讲稿、来源；右侧 16:9 课件卡与讲义卡。未接地句子会列出，可选来源给句子补 `[Sxx]`。保存写 `pages.json`、重建 `build/outline.md` 并生成 `.history/` 版本。
+- **逐页**：按时间轴生成页草稿；左侧选页，中间改标题、时长、版面、课件要点、讲义正文、任务、讲稿、来源；右侧 16:9 课件卡与讲义卡。图示可选 `figures.json` 或 `assets/` 图片，填替代文本、图注与图片来源；未接地句子可选来源补 `[Sxx]`。保存写 `pages.json`、重建 `build/outline.md` 并生成 `.history/` 版本。
+- **新建案例**：顶栏向导填标题、学科、学段、学习者、场景、时长、评估、初始来源与时间轴，创建后直接打开。
 - **来源**：卡片式编辑 `sources.csv`，显示已核验一手/未核验/受限计数。
 - **数据文件**：直接改 `lesson.yml`、CSV、`claims.csv`、`knowledge.csv`、`teacher-pack.md`、`build/outline.md` 等。
 - **检查中心**：聚合门禁三态、语言违例、claims 接地与来源审计。

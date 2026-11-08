@@ -5,7 +5,18 @@ Optional external helper: only runs when python-pptx is installed.
 """
 
 import json
+import os
 import sys
+
+
+def safe_asset(base_dir, relative):
+    if not base_dir or not relative:
+        return None
+    relative = str(relative).replace("\\", "/")
+    if ".." in relative.split("/"):
+        return None
+    path = os.path.join(base_dir, relative)
+    return path if os.path.isfile(path) else None
 
 
 def main() -> int:
@@ -17,6 +28,7 @@ def main() -> int:
         data = json.load(handle)
     lesson = data.get("lesson", {})
     pages = data.get("pages", [])
+    base_dir = data.get("dir")
 
     deck = Presentation()
     deck.slide_width = Inches(13.333)
@@ -38,6 +50,15 @@ def main() -> int:
         notes = page.get("notes")
         if notes:
             slide.notes_slide.notes_text_frame.text = str(notes)
+        visual = page.get("slide", {}).get("visual") or {}
+        image_path = safe_asset(base_dir, visual.get("asset"))
+        if image_path:
+            slide.shapes.add_picture(image_path, Inches(0.8), Inches(4.4), width=Inches(6.2))
+            caption = visual.get("caption") or visual.get("alt") or ""
+            source_id = visual.get("source") or ""
+            if caption or source_id:
+                box = slide.shapes.add_textbox(Inches(0.8), Inches(6.9), Inches(11), Inches(0.4))
+                box.text_frame.text = f"图注：{caption}{f' [{source_id}]' if source_id else ''}"
 
     deck.save(target)
     return 0
