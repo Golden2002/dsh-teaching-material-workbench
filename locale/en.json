@@ -1,6 +1,6 @@
 {
   "meta": {
     "title": "Teaching material workbench",
-    "description": "Evidence-gated teaching-material production: scaffold a case, bind primary sources, audit claim-level grounding and the knowledge map, generate a deterministic outline, run layered gates, audit rights and hash artifacts."
+    "description": "Visual teaching-material workbench: per-page handout and slide editing, approximate preview, handout/deck/storyboard/Manim export, PAEG Chinese language checks, layered gates, checks center and version history."
   }
 }

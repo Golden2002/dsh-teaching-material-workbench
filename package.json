@@ -1,11 +1,12 @@
 {
   "name": "dsh-teaching-material-workbench",
-  "version": "0.2.4",
-  "description": "Evidence-gated teaching-material production workbench for DeepSeek Harness: scaffold a case, bind primary sources, audit claim-level grounding and the knowledge map, generate a deterministic outline, run layered gates, audit rights and hash artifacts.",
+  "version": "0.4.0",
+  "description": "Evidence-gated teaching-material production workbench for DeepSeek Harness: page model, per-page editing and preview, handout/deck/storyboard/Manim export, PAEG language checks, layered gates, checks center, version history, rights audit and reproducibility.",
   "type": "module",
   "main": "lib/index.js",
   "exports": {
     ".": "./lib/index.js",
+    "./client": "./lib/client.js",
     "./locale/*.json": "./locale/*.json",
     "./icon": "./icon.svg",
     "./package.json": "./package.json"
@@ -46,6 +47,13 @@
   "dsh": {
     "bundle": {
       "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime"
+      ]
     }
   }
 }

@@ -12,6 +12,9 @@ Evidence-gated teaching-material production for DeepSeek Harness. It scaffolds a
 | `teaching_material_gate` | Run E1 (self-consistency), E2 (external standards) and E3 (empirical evidence) gates; write `gate-report.md`. |
 | `teaching_material_ground` | Claim-level grounding audit: each claim needs a source and a locator; unsupported claims fail; the teacher pack needs `[Sxx]` markers. Writes `verification/grounding-report.md`. |
 | `teaching_material_outline` | Generate a deterministic slide-by-slide Markdown outline from the case data; writes `build/outline.md`. |
+| `teaching_material_pages` | Read, draft or save the page model (`pages.json`): one timeline segment per page; saving regenerates the outline and creates a history version. |
+| `teaching_material_export` | Export handout Markdown, deck Markdown, storyboard, per-page Manim scripts, and optional DOCX/PPTX through local Python helpers; missing helpers are reported, not faked. |
+| `teaching_language_check` | Run the PAEG teaching-language rules on a text or on `language.md`; returns violations with file:line, counts and a mechanical replacement preview. |
 | `teaching_material_audit` | Audit the source register and rights; write `verification/rights-report.md`. |
 | `teaching_material_repro` | SHA-256 every build artifact; write `verification/repro.json`. |
 | `teaching_material_standards` | Return the external standards register with an honest `verified` / `partial` / `not-obtained` status. |
@@ -38,7 +41,25 @@ plugin_manager action=install_bundle target=git+https://github.com/Golden2002/ds
 
 Repository: <https://github.com/Golden2002/dsh-teaching-material-workbench>. Release tarball and checksum are under `release/`.
 
-Requirements: DeepSeek Harness with Host `tools` service (current profiles), Node.js ≥ 20. The package declares `engines.dsh >=0.2.2-rc.1`, has no install scripts, no build step, no runtime dependencies, and makes no network requests.
+## Web UI
+
+After installing the bundle, refresh the Web page. A `教学物料` tab appears beside the conversation views.
+
+- **逐页**：按时间轴生成页草稿；左侧选页，中间改页标题、时长、版面、课件要点、讲义正文、任务、讲稿与来源编号；右侧是近似预览。保存即写 `pages.json`、重建 `build/outline.md`，并生成 `.history/` 版本。
+- **导出讲义/课件/脚本**：写 `build/handout.md`、`build/deck.md`、`build/storyboard.md` 和 `animations/Scene*.py`。本机有 Python 与 python-docx/python-pptx 时同时生成 `handout.docx`、`deck.pptx`；缺依赖时在界面列出降级原因。
+- **数据文件**：直接编辑 `lesson.yml`、CSV、`claims.csv`、`knowledge.csv`、`teacher-pack.md`、`build/outline.md` 等。
+- **检查中心**：一次聚合门禁三态、语言违例、claims 接地与来源审计。
+- **版本回退**：列出保存时生成的 `.history/` 版本，可恢复；恢复前会把当前状态另存一份。
+
+界面只读写你传入的案例目录，且只改允许的文本文件；预览是近似预览，版式以导出文件为准。
+
+## Language rules
+
+Chinese teaching text is checked against the PAEG teaching-language skill (MIT, Golden2002): <https://github.com/Golden2002/paeg-teaching-language-skill>. See [docs/LANGUAGE.md](docs/LANGUAGE.md) and [docs/language/](docs/language/) for the upstream rules. The checker covers enumerable problems (forbidden wording, punctuation, number format, imperative/second-person register); figurative language, fluency and terminology still need human review.
+
+## Requirements
+
+DeepSeek Harness with Host `tools` service (current profiles), Node.js ≥ 20. The package declares `engines.dsh >=0.2.2-rc.1`, has no install scripts, no build step, no runtime dependencies, and makes no network requests. DOCX/PPTX export is optional: it uses the host's Python plus python-docx/python-pptx, and the UI reports a degraded reason when they are missing.
 
 ## Quick start
 
@@ -70,6 +91,8 @@ Each gate carries its layer and its basis. A `skip` means the check did not run;
 ```bash
 node --test tests/*.test.js
 ```
+
+Current suite: 38 tests, 0 failures.
 
 ## Scope and limits
 

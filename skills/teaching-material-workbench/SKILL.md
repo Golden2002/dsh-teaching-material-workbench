@@ -1,6 +1,6 @@
 ---
 name: teaching-material-workbench
-description: Evidence-gated production of teaching materials: context profile, primary-source register, claim-level grounding, knowledge map, deterministic outline, layered gates (E1/E2/E3), rights audit, reproducibility. Use when creating or reviewing a lesson, handout, deck, or teacher pack.
+description: Evidence-gated production of teaching materials with a Web UI: context profile, primary-source register, claim-level grounding, knowledge map, deterministic outline, PAEG language checks, layered gates (E1/E2/E3), rights audit, reproducibility. Use when creating or reviewing a lesson, handout, deck, or teacher pack.
 ---
 
 # 教学物料制作工作台
@@ -27,6 +27,27 @@ description: Evidence-gated production of teaching materials: context profile, p
 9. **版权审计**：调用 `teaching_material_audit`。原始试卷、教材扫描件不得放进案例目录。
 10. **记录哈希**：调用 `teaching_material_repro`，把产物哈希写进 `verification/repro.json`；重建后比对。
 11. **人工与实证**：把 `verification/peer-review.template.md` 变成 `peer-review.md` 并填至少 3 条意见；有真实学生数据时先写 `verification/trial-design.md`（研究问题、盲法、样本量、主要指标），再填 `pilot.csv` 的 value 与 n。有数据无设计判失败，空模板也判失败。做不到就保留"未执行"。
+
+## Web UI
+
+安装后刷新页面，对话视图旁的 `教学物料` 标签就是工作台，四个页签：
+
+- **逐页**：按时间轴生成页草稿；左侧选页，中间改标题、时长、版面、课件要点、讲义正文、任务、讲稿、来源；右侧近似预览。保存写 `pages.json`、重建 `build/outline.md` 并生成 `.history/` 版本。
+- **数据文件**：直接改 `lesson.yml`、CSV、`claims.csv`、`knowledge.csv`、`teacher-pack.md`、`build/outline.md` 等。
+- **检查中心**：聚合门禁三态、语言违例、claims 接地与来源审计。
+- **版本回退**：列出 `.history/` 版本并可恢复；恢复前会另存当前状态。
+
+界面只读写你传入的案例目录，且只改允许的文本文件。预览是近似预览，版式以导出文件为准。
+
+## 逐页与导出
+
+- `teaching_material_pages`：`action=get|draft|save|history|restore`。`draft` 从 `timeline.csv` 生成页草稿；`save` 写 `pages.json`（带 revision 乐观锁）并重建大纲；`history`/`restore` 管理 `.history/`。
+- `teaching_material_export`：`targets` 取 `handout`、`deck`、`storyboard`、`manim`、`docx`、`pptx` 或 `all`。Markdown 与 Manim 脚本总会生成；DOCX/PPTX 只在宿主机有 Python + python-docx/python-pptx 时生成，缺依赖会返回 `degraded_reason`，不伪装成功。
+- Manim 只生成 `animations/Scene*.py` 场景骨架，不执行渲染；渲染交给教师或 CI，命令示例见 `docs/MEDIA-PIPELINE.md`。
+
+## 语言检查
+
+中文教学文本用 `teaching_language_check`（或界面里的“语言检查”）。规则来自 PAEG teaching-language skill（MIT, Golden2002）：违禁词、半角标点、并列加号/斜杠、省略号与“等”、破折号与“即”、层级数字、标题句号、祈使句、第二人称、40 字长句。机械替换只处理可枚举项，之后必须人工终审。学生可见正文放 `language.md`，`E2-language-paeg` 会按同一套规则检查。
 
 ## 门禁怎么读
 

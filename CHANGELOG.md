@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.4.0 — 2026-11-08
+
+- Add the page model: `pages.json`, one timeline segment per page, with slide bullets, handout paragraphs, task, notes and sources; saving regenerates `build/outline.md` and creates a history version (`teaching_material_pages`).
+- Add the Web UI tabs: `逐页` (page list, per-page fields, approximate preview), `数据文件`, `检查中心` (gate + language + grounding + sources in one view) and `版本回退` (list and restore `.history/`).
+- Add export (`teaching_material_export`): handout Markdown, deck Markdown, storyboard, per-page Manim scene scripts; optional DOCX/PPTX through local python-docx/python-pptx with an explicit degraded reason when missing.
+- Add API routes for pages, export, checks and history; tests now 38, including page drafts, revision conflicts, export outputs and history restore.
+- Add `docs/TEACHER-NEEDS.md`, `docs/MEDIA-PIPELINE.md`; the product design in `docs/FEATURE-DESIGN.md` marks the P0 subset implemented here.
+
+## 0.3.1 — 2026-11-08
+
+- Fix the `teaching_language_check` output schema: `counts.additionalProperties` must be a boolean; use an open object schema instead. The activation guard now rejects object-valued `additionalProperties` anywhere in a tool schema, with a regression test.
+- 0.3.0 failed to activate because of this schema; 0.3.1 is the installable release.
+
+## 0.3.0 — 2026-11-08
+
+- Add a Web UI tab `教学物料` (`conversation.view`): browse case directories, edit lesson/profile/CSV/claims/knowledge/teacher-pack/outline, run language checks and gates, see results in place. Host API under `/teaching-workbench`.
+- Add PAEG teaching-language integration: `lib/language.js`, bundled rule data, `teaching_language_check` tool, `E2-language-paeg` gate for `language.md`, and `docs/LANGUAGE.md` plus the upstream rule documents with attribution.
+- Add optional `language.md` to the scaffold; existing cases without it report the gate as unexecuted.
+- Tests: 32 passing, including language rules and the new gate.
+
 ## 0.2.4 — 2026-11-07
 
 - Release packaging: version 0.2.4, real `publishTimestamp` in the community index example.

@@ -167,8 +167,9 @@ test('a complete case passes data gates and marks human/pilot evidence unexecute
   try {
     const outcome = runGate(dir)
     assert.equal(outcome.summary.fail, 0, JSON.stringify(outcome.results.filter((entry) => entry.status === 'fail')))
-    assert.equal(outcome.summary.skip, 3)
+    assert.equal(outcome.summary.skip, 4)
     assert.equal(outcome.summary.pass, 12)
+    assert.ok(outcome.results.some((entry) => entry.gate === 'E2-language-paeg' && entry.status === 'skip'))
     assert.ok(outcome.results.some((entry) => entry.gate === 'E2-knowledge' && entry.status === 'pass'))
     assert.ok(outcome.results.some((entry) => entry.gate === 'E2-grounding' && entry.status === 'pass'))
     assert.ok(outcome.results.some((entry) => entry.gate === 'E2-rubric-source' && entry.status === 'skip'))
@@ -381,6 +382,17 @@ test('every tool execute entry point works end to end', async () => {
   }
 })
 
+test('a language.md with PAEG violations fails E2-language-paeg', () => {
+  const dir = writeCase()
+  try {
+    writeFile(dir, 'language.md', '# 学生讲义\n\n说白了，先记住这一点，你会发现很简单。\n')
+    const outcome = runGate(dir)
+    assert.ok(outcome.results.some((entry) => entry.gate === 'E2-language-paeg' && entry.status === 'fail'))
+  } finally {
+    rmSync(dir, { recursive: true, force: true })
+  }
+})
+
 test('bundle manifest carries the community-required fields', () => {
   const pkg = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8'))
   assert.equal(pkg.name, 'dsh-teaching-material-workbench')
@@ -431,4 +443,10 @@ test('every tool schema is valid for the model-facing function validator', () =>
     parameters: { type: 'object', properties: { directory: { type: 'string', required: true } }, required: ['directory'] },
   }
   assert.throws(() => assertToolSchema(broken), /required must not exist/)
+  const badAdditional = {
+    name: 'bad-additional',
+    description: '',
+    parameters: { type: 'object', properties: { counts: { type: 'object', additionalProperties: { type: 'integer' } } }, required: [] },
+  }
+  assert.throws(() => assertToolSchema(badAdditional), /additionalProperties must be a boolean/)
 })

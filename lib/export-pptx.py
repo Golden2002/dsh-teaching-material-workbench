@@ -1,0 +1,47 @@
+"""Minimal PPTX export for dsh-teaching-material-workbench.
+
+Reads an export JSON ({lesson, pages}) and writes a plain 16:9 deck.
+Optional external helper: only runs when python-pptx is installed.
+"""
+
+import json
+import sys
+
+
+def main() -> int:
+    from pptx import Presentation
+    from pptx.util import Inches, Pt
+
+    source, target = sys.argv[1], sys.argv[2]
+    with open(source, encoding="utf-8") as handle:
+        data = json.load(handle)
+    lesson = data.get("lesson", {})
+    pages = data.get("pages", [])
+
+    deck = Presentation()
+    deck.slide_width = Inches(13.333)
+    deck.slide_height = Inches(7.5)
+    title_slide = deck.slides.add_slide(deck.slide_layouts[0])
+    title_slide.shapes.title.text = str(lesson.get("title") or "课件")
+    title_slide.placeholders[1].text = f"{lesson.get('duration_min', '')} 分钟"
+
+    for index, page in enumerate(pages, start=1):
+        slide = deck.slides.add_slide(deck.slide_layouts[1])
+        slide.shapes.title.text = str(page.get("title") or f"第 {index} 页")
+        body = slide.placeholders[1].text_frame
+        bullets = page.get("slide", {}).get("bullets") or []
+        body.clear()
+        for bullet_index, bullet in enumerate(bullets[:6]):
+            paragraph = body.paragraphs[0] if bullet_index == 0 else body.add_paragraph()
+            paragraph.text = str(bullet)
+            paragraph.font.size = Pt(24)
+        notes = page.get("notes")
+        if notes:
+            slide.notes_slide.notes_text_frame.text = str(notes)
+
+    deck.save(target)
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
