@@ -1,15 +1,15 @@
-# Release 0.4.1
+# Release 0.5.0
 
-- 包：`dsh-teaching-material-workbench-0.4.1.tgz`（175,053 B）
-- 校验：`SHA256SUMS`（SHA-256 `D9C58C2B948E32C96620E98D347DAF557B44A83929FE819563E2B9BA6DA9C082`）
+- 包：`dsh-teaching-material-workbench-0.5.0.tgz`（178,781 B）
+- 校验：`SHA256SUMS`（SHA-256 `564AA2EDFCCEBA18175516FC50E1A0144CCC77BE12BBBE70A04095A987E68542`）
 - 索引模板：`index.json`（git 源，commit 固定为发布提交）
 - 安装：
 
 ```powershell
-plugin_manager action=install_bundle target=git+https://github.com/Golden2002/dsh-teaching-material-workbench.git#v0.4.1
+plugin_manager action=install_bundle target=git+https://github.com/Golden2002/dsh-teaching-material-workbench.git#v0.5.0
 ```
 
-发布提交以 tag `v0.4.1` 为准；`git rev-parse v0.4.1^{commit}` 可得完整 SHA。
+发布提交以 tag `v0.5.0` 为准；`git rev-parse v0.5.0^{commit}` 可得完整 SHA。
 
 ## 本版能力
 

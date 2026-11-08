@@ -563,3 +563,9 @@ URL 证据（2026-11-08 访问）：
 - `lib/pages.js:212-222` Manim 场景脚本导出与降级说明。
 - `lib/office-export.js:15-34` 外部命令调用模板：`spawnSync`、参数数组、60 秒超时、`windowsHide`、错误截断。
 - `lib/gate.js:276-326` 配色对比度与 WCAG 无障碍门禁，可供媒体检查复用。
+
+## 10. 用户反馈与复核（2026-11-08）
+
+用户称本机已装 manim。复核结果：`Get-Command manim` 无结果；`python -m manim --version` 报 `No module named manim`；`py -0p` 只列出 Python 3.14；常见安装路径未找到 `manim.exe`。当前会话环境未发现可用的 manim。
+
+按用户要求：不搭建虚拟环境、不安装 manim，Manim 方案只记载，不执行渲染。需要渲染时由教师在自己的环境执行 `manim -pql animations/SceneNN.py SceneNN`；插件继续只生成脚本，并在 `degraded_reason` 里写明未渲染。

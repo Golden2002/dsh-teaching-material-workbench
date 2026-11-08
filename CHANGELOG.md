@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.0 — 2026-11-08
+
+- Add the `来源` tab and structured sources API: edit `sources.csv` as cards (id/title/publisher/date/type/locator/access/license/verified/role), see verified/primary/restricted counts, add/delete rows.
+- Add sentence-level ungrounded hints in `逐页`: substantive handout sentences without `[Sxx]` are listed; choose a source to append its marker to that sentence.
+- Add version diff: history entries can open a side-by-side view of that version's `pages.json` and the current file.
+- Improve preview: a 16:9 slide card plus a handout card, with an explicit "approximate, export for final layout" note.
+- Record the Manim user note in `docs/MEDIA-PIPELINE.md`: no venv, no install; script-only, render by the teacher externally.
+
 ## 0.4.2 — 2026-11-08
 
 - Manim scene scripts now declare `FONT = "Noto Sans SC"` with a note to change it when that font is absent; generated text passes `font=FONT`.

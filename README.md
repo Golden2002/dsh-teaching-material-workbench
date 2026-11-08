@@ -45,11 +45,12 @@ Repository: <https://github.com/Golden2002/dsh-teaching-material-workbench>. Rel
 
 After installing the bundle, refresh the Web page. A `教学物料` tab appears beside the conversation views.
 
-- **逐页**：按时间轴生成页草稿；左侧选页，中间改页标题、时长、版面、课件要点、讲义正文、任务、讲稿与来源编号；右侧是近似预览。保存即写 `pages.json`、重建 `build/outline.md`，并生成 `.history/` 版本。
+- **逐页**：按时间轴生成页草稿；左侧选页，中间改页标题、时长、版面、课件要点、讲义正文、任务、讲稿与来源编号；右侧是 16:9 课件卡与讲义卡。未接地句子会列出来，可选来源给句子补 `[Sxx]` 标记。保存即写 `pages.json`、重建 `build/outline.md`，并生成 `.history/` 版本。
+- **来源**：把 `sources.csv` 当卡片编辑，显示已核验一手、未核验、受限三类计数，可新增与删除。
 - **导出讲义/课件/脚本**：写 `build/handout.md`、`build/deck.md`、`build/storyboard.md`、`build/script.md`、`build/subtitles.srt` 和 `animations/Scene*.py`。本机有 Python 与 python-docx/python-pptx 时同时生成 `handout.docx`、`deck.pptx`；缺依赖时在界面列出降级原因。
 - **数据文件**：直接编辑 `lesson.yml`、CSV、`claims.csv`、`knowledge.csv`、`teacher-pack.md`、`build/outline.md` 等。
 - **检查中心**：一次聚合门禁三态、语言违例、claims 接地与来源审计。
-- **版本回退**：列出保存时生成的 `.history/` 版本，可恢复；恢复前会把当前状态另存一份。
+- **版本回退**：列出 `.history/` 版本，可恢复，也可打开当前 `pages.json` 与该版本的并排差异。
 
 界面只读写你传入的案例目录，且只改允许的文本文件；预览是近似预览，版式以导出文件为准。
 

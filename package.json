@@ -1,6 +1,6 @@
 {
   "name": "dsh-teaching-material-workbench",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "description": "Evidence-gated teaching-material production workbench for DeepSeek Harness: page model, per-page editing and preview, handout/deck/storyboard/Manim export, PAEG language checks, layered gates, checks center, version history, rights audit and reproducibility.",
   "type": "module",
   "main": "lib/index.js",
